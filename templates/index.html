@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Mars Scrape</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
+
 <body>
-<div class="container">
+  <div class="container">
 
     <div class="jumbotron text-center">
-      <h1>Latest Info About Mars</h1>
+      <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
 
+    <!-- Mars Info -->
+    <div class="row" id="Mars_news">
       <div class="col-md-12">
-        <h4 class="heading">{{result.news_title}} {{result.news_para}}</h4>
-        <small>{{result.featured_image_url}}</small>
-      <div class="col-md-12">
-
-        <a class="heading" href="facts_table.html">Facts Table</a>
+        <!-- <h3 class = "heading">Mission to Mars</h3> -->
+        <!-- list_date -->
+        <h4 class="heading">{{result.news_title}} {{result.news_p}}</h4>
+        <small>{{result.featured_image}}</small>
       </div>
-      </div>
+    </div>
 
   </div>
-
 </body>
+
 </html>
