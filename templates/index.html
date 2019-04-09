@@ -2,32 +2,112 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mars</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Adriana</title>
+    <style>
+    img {
+          border: 1px lightgrey #ddd;
+          border-radius: 4px;
+          padding: 10px;
+          width: 750px
+          ;
+           }
+            .jumbotron {
+              height: 200px;
+
+        }
+        .holder img {
+            max-height: 400px;
+            max-width: 400px;
+            object-fit: cover;
+        }
+        .weather{
+            border: 1px lightgrey #ddd;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class="container">
+<div class="container">
 
     <div class="jumbotron text-center">
-      <h1>Mission to Mars</h1>
-      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
-    </div>
+        <!-- Render our data -->
+        <h1>{{ text }}</h1>
 
-    <!-- Mars Info -->
-    <div class="row" id="Mars_news">
-      <div class="col-md-12">
-        <!-- <h3 class = "heading">Mission to Mars</h3> -->
-        <!-- list_date -->
-        <h4 class="heading">{{result.news_title}} {{result.news_p}}</h4>
-        <small>{{result.featured_image}}</small>
-      </div>
-    </div>
+        <a class="btn btn-primary btn-md" href="/scrape" role="button">Scrape New Data</a>
 
-  </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Latest Mars News</h4>
+            <h5>{{data["title"]}}</h5>
+            <p>{{data["content"]}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <h4>Featured Mars Images</h4>
+            <img id="bio-image1" src="{{data['featured_image_url']}}" alt=" ">
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Current Weather on Mars</h4>
+                    <div style="border:1px solid grey;">
+                        <p style="margin-left:10px;">{{data["latest_weather"]}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4>Mars Facts</h4>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Description</th>
+                            <th scope="col">Value</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for fact in data["mars_facts"] %}
+                        <tr height="10">
+                            <td>{{fact[0]}}</td>
+                            <td>{{fact[1]}}</td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 align="center"> Mars Hemisphere</h4>
+        </div>
+    </div>
+    <div class="row">
+        {% for item in data["image_data"][0:2]%}
+        <div class="col-sm-6 holder">
+            <img src='{{item["img_url"]}}'>
+            <p>{{item["footer"]}}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for item in data["image_data"][2:]%}
+        <div class="col-sm-6 holder">
+            <img src='{{item["img_url"]}}'>
+            <p>{{item["footer"]}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 </body>
-
 </html>
